@@ -115,7 +115,7 @@ def scrape_data():
 
         victory_points.reverse()
         stats[nation].extend(victory_points)
-        print(stats)
+        # print(stats)
         # time.sleep(100)
     finally:
         driver.quit()
