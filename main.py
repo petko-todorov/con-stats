@@ -1,6 +1,6 @@
 from scraper import scrape_data
 from data_handler import save_to_csv, load_from_csv
-from vizualizer import visualizer
+from visualizer import visualizer
 
 
 def scrape_and_save():
