@@ -74,6 +74,15 @@ def scrape_data():
         )
         driver.switch_to.frame(iframe)
 
+        stats = {}
+        nation = WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((
+                By.CSS_SELECTOR,
+                "#func_miniprofile_cont > div.miniprofile_name_container.func_open_profile_tooltip > div > "
+                "div:nth-child(2)"))
+        ).text
+        stats[nation] = []
+
         diplomacy = WebDriverWait(driver, 20).until(
             EC.element_to_be_clickable((By.ID, "func_btn_newspaper"))
         )
@@ -81,7 +90,7 @@ def scrape_data():
 
         victory_points = []
         while True:
-            time.sleep(0.1)
+            time.sleep(0.2)
 
             ranking_points_element = WebDriverWait(driver, 20).until(
                 EC.presence_of_element_located(
@@ -90,7 +99,7 @@ def scrape_data():
             )
 
             inner_html = int(ranking_points_element.get_attribute("innerText").strip())
-            print(inner_html)
+
             victory_points.append(inner_html)
             button = WebDriverWait(driver, 20).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR,
@@ -104,13 +113,11 @@ def scrape_data():
             if current_day_value == "1":
                 break
 
-        print(victory_points.reverse())
-
-        time.sleep(100)
-
+        victory_points.reverse()
+        stats[nation].extend(victory_points)
+        print(stats)
+        # time.sleep(100)
     finally:
         driver.quit()
 
-
-# TODO: remove
-scrape_data()
+    return stats
