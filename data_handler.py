@@ -19,10 +19,8 @@ def save_to_csv(stats):
     if os.path.exists(CSV_FILE) and os.stat(CSV_FILE).st_size > 0:
         existing_df = pd.read_csv(CSV_FILE)
 
-        # Remove existing nation's data
         existing_df = existing_df[~existing_df["Nation"].isin(new_df["Nation"])]
 
-        # Append new data and sort by Nation and Day
         updated_df = pd.concat([existing_df, new_df]).sort_values(by=["Nation", "Day"])
     else:
         updated_df = new_df
