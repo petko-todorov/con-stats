@@ -73,6 +73,8 @@ def scrape_data():
             ).text
             stats[nation] = []
 
+            driver.execute_script("document.elementFromPoint(1, 1).click();")
+
             diplomacy = WebDriverWait(driver, 20).until(
                 EC.element_to_be_clickable((By.ID, "func_btn_newspaper"))
             )
