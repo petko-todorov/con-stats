@@ -101,7 +101,7 @@ def scrape_kd_stats():
             pass
 
         # TODO: enable
-        # time.sleep(1)
+        time.sleep(1)
         try:
             country = WebDriverWait(driver, 3).until(
                 EC.element_to_be_clickable(
