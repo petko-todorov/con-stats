@@ -96,7 +96,7 @@ def scrape_kd_stats():
                      "#mapSelector > ul > li.province_element.selector_element > div")
                 )
             ).click()
-            print("Country image found")
+            # print("Country image found")
         except:  # NOQA
             pass
 
