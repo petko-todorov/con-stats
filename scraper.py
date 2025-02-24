@@ -55,7 +55,8 @@ def scrape_data():
 
         elements = driver.find_elements(
             By.XPATH,
-            "//div[contains(@class, 'v-popover') and contains(@class, 'uber_game_tile') and contains(@class, 'button_click')]"
+            "//div[contains(@class, 'v-popover') and contains(@class, 'uber_game_tile') and contains(@class, "
+            "'button_click')]"
         )
 
         def get_data():
@@ -84,7 +85,7 @@ def scrape_data():
             while True:
                 time.sleep(0.2)
 
-                ranking_points_element = WebDriverWait(driver, 20).until(
+                ranking_points_element = WebDriverWait(driver, 30).until(
                     EC.presence_of_element_located(
                         (By.CSS_SELECTOR,
                          "#newspaper_ranking_single > div.viewport > div > ol > li.is_self > div.ranking_points"))
