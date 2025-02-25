@@ -234,8 +234,8 @@ def scrape_kd_stats():
             ))
         kd_stat_vs_ai = kd_stat_element.text
 
-        print(kills_stat_vs_players, deaths_stat_vs_players, kd_stat_vs_players)
-        print(kills_stat_vs_ai, deaths_stat_vs_ai, kd_stat_vs_ai)
+        # print(kills_stat_vs_players, deaths_stat_vs_players, kd_stat_vs_players)
+        # print(kills_stat_vs_ai, deaths_stat_vs_ai, kd_stat_vs_ai)
 
         kd_data = {
             'new': [

@@ -2,6 +2,7 @@ from scraper import scrape_data
 from data_handler import save_to_csv, load_from_csv
 from visualizer import visualizer
 from kd_stats import scrape_kd_stats, save_kd_stats_to_csv, visualize_kd_stats
+import sys
 
 
 def scrape_and_save():
@@ -43,7 +44,7 @@ if __name__ == '__main__':
             2: load_and_visualize,
             3: scrape_kd_stats_and_visualize,
             4: visualize_kd_stats,
-            5: exit
+            5: sys.exit
         }
 
-        options.get(choice, exit)()
+        options.get(choice, sys.exit)()
