@@ -11,6 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC  # NOQA
 from selenium.webdriver.chrome.options import Options
 from dotenv import dotenv_values
+from tabulate import tabulate
 
 DATA_DIR = "data"
 CSV_FILE = os.path.join(DATA_DIR, "kd_stats.csv")
@@ -284,6 +285,8 @@ def visualize_kd_stats():
     try:
         df = pd.read_csv(CSV_FILE)
         categories = ['K/D vs Players', 'K/D vs AI']
+        print(tabulate(df, headers='keys', tablefmt='rounded_outline', numalign="center", stralign="center",
+                       showindex="never"))
 
         try:
             old_values = df[df['Type'] == 'Old'][categories].iloc[0].tolist()
