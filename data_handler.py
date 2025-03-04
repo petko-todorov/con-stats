@@ -16,16 +16,28 @@ def save_to_csv(stats):
 
     new_df = pd.DataFrame(data_list)
 
-    if os.path.exists(CSV_FILE) and os.stat(CSV_FILE).st_size > 0:
-        existing_df = pd.read_csv(CSV_FILE)
+    while True:
+        print("1. Update existing CSV file")
+        print("2. Create new CSV file")
+        choice = input("Enter your choice (1/2): ")
 
-        existing_df = existing_df[~existing_df["Nation"].isin(new_df["Nation"])]
+        if choice == "1":
+            if os.path.exists(CSV_FILE) and os.stat(CSV_FILE).st_size > 0:
+                existing_df = pd.read_csv(CSV_FILE)
 
-        updated_df = pd.concat([existing_df, new_df]).sort_values(by=["Nation", "Day"])
-    else:
-        updated_df = new_df
+                existing_df = existing_df[~existing_df["Nation"].isin(new_df["Nation"])]
 
-    updated_df.to_csv(CSV_FILE, index=False)
+                updated_df = pd.concat([existing_df, new_df]).sort_values(by=["Nation", "Day"])
+            else:
+                updated_df = new_df
+            updated_df.to_csv(CSV_FILE, index=False)
+            break
+        elif choice == "2":
+            new_df.to_csv(CSV_FILE, index=False)
+            break
+        else:
+            print("Invalid choice. Exiting...")
+            continue
 
 
 def load_from_csv():
