@@ -82,6 +82,7 @@ def scrape_data():
             diplomacy.click()
 
             victory_points = []
+            time.sleep(1)
             while True:
                 time.sleep(0.2)
 
@@ -111,13 +112,19 @@ def scrape_data():
 
             driver.execute_script("document.elementFromPoint(1, 1).click();")
 
-            return_to_menu = WebDriverWait(driver, 20).until(
-                EC.element_to_be_clickable((
-                    By.CSS_SELECTOR,
-                    "#func_miniprofile_cont > div.actions.row > div.func_button_home.con_button.mini_profile_topbutton"
-                ))
-            )
-            return_to_menu.click()
+            time.sleep(1)
+            try:
+                return_to_menu = WebDriverWait(driver, 20).until(
+                    EC.element_to_be_clickable((
+                        By.CSS_SELECTOR,
+                        "#func_miniprofile_cont > div.actions.row > "
+                        "div.func_button_home.con_button.mini_profile_topbutton"
+                    ))
+                )
+                return_to_menu.click()
+            except:
+                print("Try again")
+                driver.quit()
 
         count = len(elements)
         for x in range(1, count + 1):
