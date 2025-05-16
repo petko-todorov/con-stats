@@ -92,7 +92,7 @@ def scrape_data():
                          "#newspaper_ranking_single > div.viewport > div > ol > li.is_self > div.ranking_points"))
                 )
 
-                inner_html = int(ranking_points_element.get_attribute("innerText").strip())
+                inner_html = int(ranking_points_element.get_attribute("innerText").split(' (')[0].strip())
 
                 victory_points.append(inner_html)
                 button = WebDriverWait(driver, 20).until(

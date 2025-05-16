@@ -309,19 +309,23 @@ def visualize_kd_stats():
             new_value = new_values[i]
 
             if old_value == new_value:
+                old_value_str = str(f"{old_value:.2f}")
                 ax.bar(i, old_value, width * 1.5, color='#006600', edgecolor='black',
                        label='Same K/D' if i == 0 else "")
-                ax.text(i, old_value + 0.05, str(round(old_value, 2)), ha='center', va='bottom', fontsize=12)
+                # ax.text(i, old_value + 0.05, str(round(old_value, 2)), ha='center', va='bottom', fontsize=12)
+                ax.text(i, old_value + 0.05, old_value_str, ha='center', va='bottom', fontsize=12)
                 ax.text(i, old_value + 0.5, "Old and New K/D are the same",
                         ha='center', va='bottom', fontsize=12, clip_on=True)
             else:
+                old_value_str = str(f"{old_value:.2f}")
+                new_value_str = str(f"{new_value:.2f}")
                 ax.bar(i - width / 2, old_value, width, color='gray', edgecolor='black',
                        label='Old K/D' if i == 0 else "")
                 ax.bar(i + width / 2, new_value, width, color='skyblue', edgecolor='black',
                        label='New K/D' if i == 0 else "")
-                ax.text(i - width / 2, old_value + 0.05, str(round(old_value, 2)), ha='center', va='bottom',
+                ax.text(i - width / 2, old_value + 0.05, old_value_str, ha='center', va='bottom',
                         fontsize=12)
-                ax.text(i + width / 2, new_value + 0.05, round(new_value, 2), ha='center', va='bottom', fontsize=12)
+                ax.text(i + width / 2, new_value + 0.05, new_value_str, ha='center', va='bottom', fontsize=12)
 
         ax.set_ylabel("K/D Ratio")
         ax.set_title("Comparison of K/D vs Players and K/D vs AI")
